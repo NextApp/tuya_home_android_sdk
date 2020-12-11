@@ -12,7 +12,6 @@ import com.tuya.smart.android.demo.base.bean.ColorBean;
 import com.tuya.smart.android.demo.base.presenter.LampPresenter;
 import com.tuya.smart.android.demo.base.utils.AnimationUtil;
 import com.tuya.smart.android.demo.base.view.ILampView;
-import com.tuya.smart.android.demo.base.widget.ColorPicker;
 import com.tuya.smart.android.demo.base.widget.LampView;
 
 import butterknife.BindView;
@@ -47,7 +46,6 @@ public class LampActivity extends BaseActivity implements ILampView {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lamp);
-
         initToolbar();
         initMenu();
         initView();
@@ -106,20 +104,6 @@ public class LampActivity extends BaseActivity implements ILampView {
         return mLampView.getColor();
     }
 
-    @Override
-    public int getLampOriginalColor() {
-        return mLampView.getOriginalColor();
-    }
-
-    @Override
-    public void setLampColor(int color) {
-        mLampView.setColor(color);
-    }
-
-    @Override
-    public void setLampColorWithNoMove(int color) {
-        mLampView.setColorWithNoAngle(color, ColorPicker.S_RESPONING);
-    }
 
     @Override
     public void showOperationView() {
