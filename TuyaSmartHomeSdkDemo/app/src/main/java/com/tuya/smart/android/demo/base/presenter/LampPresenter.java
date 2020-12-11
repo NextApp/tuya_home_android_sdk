@@ -33,37 +33,6 @@ public class LampPresenter extends BasePresenter implements ILightListener {
         updateLampSwitchStatus(mLightDevice.getLightDataPoint());
     }
 
-    private void startCloseLamp() {
-        mLightDevice.powerSwitch(false, new IResultCallback() {
-            @Override
-            public void onError(String code, String error) {
-
-            }
-
-            @Override
-            public void onSuccess() {
-
-            }
-        });
-    }
-
-    /**
-     * 灯光的开关状态依赖服务端
-     */
-    private void startOpenLamp() {
-        mLightDevice.powerSwitch(true, new IResultCallback() {
-            @Override
-            public void onError(String code, String error) {
-
-            }
-
-            @Override
-            public void onSuccess() {
-
-            }
-        });
-    }
-
 
     private void updateColorModeData(LightDataPoint lightDataPoint) {
         LightColourData data = lightDataPoint.colorHSV;
@@ -119,11 +88,17 @@ public class LampPresenter extends BasePresenter implements ILightListener {
 
     public void onClickLampSwitch() {
         boolean isOpen = mLightDevice.getLightDataPoint().powerSwitch;
-        if (isOpen) {
-            startCloseLamp();
-        } else {
-            startOpenLamp();
-        }
+        mLightDevice.powerSwitch(!isOpen, new IResultCallback() {
+            @Override
+            public void onError(String code, String error) {
+
+            }
+
+            @Override
+            public void onSuccess() {
+
+            }
+        });
     }
 
 
